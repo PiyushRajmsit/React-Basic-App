@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Person from './Person/Person.js';
 import Radium from 'radium';
-import './App.css';
+import Styles from './App.css';
 
 class App extends Component {
   state = {
@@ -60,26 +60,16 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor : 'Green',
-      color : 'White',
-      border: '1px solid Blue',
-      padding : '8px',
-      font : 'inherit',
-      cursor : 'pointer',
-      ':hover' : {
-          backgroundColor: 'lightgreen',
-          color: 'black'
-      }
-    };
     let person = null;
     let classes = [];
+    let btnClass = [Styles.Button]
+
     if(this.state.person.length <= 3)
     {
-      classes.push('red');
+      classes.push(Styles.red);
     }
     if(this.state.person.length <= 2){
-      classes.push('bold');
+      classes.push(Styles.bold);
     }
     if(this.state.showPersonState)
     {
@@ -97,17 +87,14 @@ class App extends Component {
             )}
           </div>
           );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      
+      btnClass.push(Styles.red);
     }
     return(
-      <div className="App">
+      <div className={Styles.App}>
         <h1> The React App</h1>
         <p className={classes.join(' ')}> This is actually Working</p>
-        <button style={style} onClick={this.togglePersonHandler}> Toggle Names </button>
+        <button className={Styles.Button} onClick={this.togglePersonHandler}> Toggle Names </button>
         {person}
       </div>
     );
